@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="uiState"
+            type="com.example.androidexam.ui.views.ViewStatus" />
+    </data>
+
+    <com.example.androidexam.ui.views.ViewStatusLayout
+        android:id="@+id/main_viewStatusLayout"
+        android:layout_width="match_parent"
+        app:status="@{uiState}"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/light_gray">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="?actionBarSize">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dim_235dp"/>
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/pager_tab_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:tabBackground="@drawable/pager_selector"
+                            app:tabGravity="center"
+                            app:tabIndicatorHeight="0dp"
+                            android:layout_gravity="bottom"
+                            android:layout_alignBottom="@+id/view_pager"
+                            />
+
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="?actionBarSize"
+                        app:layout_collapseMode="pin"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="@dimen/dim_2dp"
+                        android:layout_marginBottom="@dimen/dim_2dp"
+                        android:background="@color/light_gray"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" >
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayoutCustom"
+                            android:layout_marginEnd="@dimen/dim_15dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edt_search"
+                                style="@style/TextInputEditTextCustom"
+                                android:hint="@string/hint_search"
+                                android:textSize="16sp"
+                                android:drawableStart="@android:drawable/ic_menu_search"
+                                android:autofillHints="true"
+                                android:inputType="text"
+                                android:layout_marginTop="@dimen/dim_7dp"
+                                android:layout_marginBottom="@dimen/dim_7dp"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.MainActivity"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_labelList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dim_5dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/list_item"/>
+
+                    <TextView
+                        android:id="@+id/tv_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/error_text"
+                        android:layout_margin="@dimen/dim_30dp"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </com.example.androidexam.ui.views.ViewStatusLayout>
+    
+</layout>
